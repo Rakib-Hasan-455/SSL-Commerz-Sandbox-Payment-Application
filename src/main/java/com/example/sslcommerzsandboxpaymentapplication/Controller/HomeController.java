@@ -4,6 +4,7 @@ import com.example.sslcommerzsandboxpaymentapplication.commerz.SSLCommerz;
 import com.example.sslcommerzsandboxpaymentapplication.commerz.TransactionResponseValidator;
 import com.example.sslcommerzsandboxpaymentapplication.commerz.Utility.ParameterBuilder;
 import com.example.sslcommerzsandboxpaymentapplication.entity.Appointment;
+import jdk.jfr.ContentType;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-@Controller
+@RestController
 @ComponentScan
 public class HomeController {
 
@@ -61,6 +62,7 @@ public class HomeController {
         TransactionResponseValidator transactionResponseValidator = new TransactionResponseValidator();
         transactionResponseValidator.receiveSuccessResponse(requestMap);
         System.out.println("Pay-success-new is called");
+
         return "Everything is okay! ";
     }
 }
