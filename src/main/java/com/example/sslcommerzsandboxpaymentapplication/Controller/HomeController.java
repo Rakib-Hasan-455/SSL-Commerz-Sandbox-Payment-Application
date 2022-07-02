@@ -46,7 +46,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/pay-success")
+    @PostMapping("/pay-success")
     public String paymentSuccessful() {
         System.out.println("This is successful page.. ");
         return "Payment_Success";
