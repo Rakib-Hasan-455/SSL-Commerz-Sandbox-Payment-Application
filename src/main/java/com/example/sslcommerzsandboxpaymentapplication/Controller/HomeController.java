@@ -58,7 +58,7 @@ public class HomeController {
     }
 
     @PostMapping("/pay-success-new")
-    public String paymentSuccessNew(HttpServletRequest request, @RequestBody Map<String, String> requestMap) throws Exception {
+    public String paymentSuccessNew(HttpServletRequest request, @RequestParam Map<String, String> requestMap) throws Exception {
         TransactionResponseValidator transactionResponseValidator = new TransactionResponseValidator();
         transactionResponseValidator.receiveSuccessResponse(requestMap);
         System.out.println("Pay-success-new is called");
