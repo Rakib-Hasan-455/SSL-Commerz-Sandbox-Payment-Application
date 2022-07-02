@@ -49,9 +49,9 @@ public class HomeController {
     public String paymentSuccessful(HttpServletRequest request) {
 
         String customerID = "";
-        customerID = request.getAttribute("tran_id").toString();
+//        customerID = request.getAttribute("tran_id").toString();
 //        model.addAttribute("customerID", customerID);
         System.out.println("This is successful page.. ");
-        return customerID+"abc";
+        return "abc";
     }
 }
