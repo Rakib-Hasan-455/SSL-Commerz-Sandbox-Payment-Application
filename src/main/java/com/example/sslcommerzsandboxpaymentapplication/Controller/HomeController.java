@@ -46,7 +46,7 @@ public class HomeController {
     @PostMapping("/pay-success")
     public String paymentSuccessful(Model model, HttpServletRequest httpServletRequest) {
         String customerID = httpServletRequest.getAttribute("cus_name").toString();
-        model.addAttribute("customerID", customerID)
+        model.addAttribute("customerID", customerID);
         System.out.println("This is successful page.. ");
         return "Payment_Success";
     }
