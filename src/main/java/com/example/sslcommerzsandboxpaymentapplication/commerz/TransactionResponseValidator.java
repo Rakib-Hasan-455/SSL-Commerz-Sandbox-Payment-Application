@@ -24,7 +24,7 @@ public class TransactionResponseValidator {
         String amount = "150";
         String currency = "BDT";
         // Set your store Id and store password and define TestMode
-        SSLCommerz sslcz = new SSLCommerz("abc62bdc6438f3c5", "abc62bdc6438f3c5@ssl", true);
+        SSLCommerz sslcz = new SSLCommerz("docto62c031c5a653e", "docto62c031c5a653e@ssl", true);
 
         /**
          * If following order validation returns true, then process transaction as success.

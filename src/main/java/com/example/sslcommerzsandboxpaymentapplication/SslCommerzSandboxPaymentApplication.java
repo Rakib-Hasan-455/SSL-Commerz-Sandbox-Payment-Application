@@ -1,5 +1,7 @@
 package com.example.sslcommerzsandboxpaymentapplication;
 
+import com.example.sslcommerzsandboxpaymentapplication.commerz.SSLCommerz;
+import com.example.sslcommerzsandboxpaymentapplication.commerz.Utility.ParameterBuilder;
 import com.example.sslcommerzsandboxpaymentapplication.entity.Appointment;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @Controller
 @SpringBootApplication
@@ -25,14 +31,28 @@ public class SslCommerzSandboxPaymentApplication {
     }
 
     @PostMapping("/handle-payment")
-    public String handlePay(@ModelAttribute Appointment appointment, Model model) {
-        model.addAttribute("Appointment", appointment);
-        return "Patient_appoint_doctor";
+    public RedirectView payTest(@ModelAttribute Appointment appointment) throws Exception {
+        String baseurl = "https://sslpay.herokuapp.com/";
+        String payment = appointment.getAppointTime();
+        String transactionID = "SKJSDKFE123";
+        String time = appointment.getAppointTime();
+        String patientID = appointment.getPatient_ID();
+        String doctorID = appointment.getDoctor_ID();
+        Map<String, String> transactionMap = ParameterBuilder.constructRequestParam(baseurl, payment, transactionID, time, patientID, doctorID);
+        SSLCommerz sslCommerz = new SSLCommerz("docto62c031c5a653e", "docto62c031c5a653e@ssl", true);
+        String url = sslCommerz.initiateTransaction(transactionMap, false);
+        System.out.println("The url: " + url);
+        System.out.println("after previous url");
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl(url);
+        return redirectView;
     }
 
 
     @GetMapping("/pay-success")
-    public String paymentSuccessful() {
+    public String paymentSuccessful(HttpServletRequest httpServletRequest) {
+        String id = httpServletRequest.getParameter("cus_name");
+        System.out.println("This is successful page.. ");
         return "Payment_Success";
     }
 

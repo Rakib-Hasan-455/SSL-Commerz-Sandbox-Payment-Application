@@ -31,11 +31,11 @@ public class ParameterBuilder {
 
     public static Map<String, String> constructRequestParameters() {
         // CREATING LIST OF POST DATA
-        String baseUrl = "http://test.com:8080/";//Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+        String baseUrl = "https://sslpay.herokuapp.com/";//Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
         Map<String, String> postData = new HashMap<String, String>();
         postData.put("total_amount", "150.00");
         postData.put("tran_id", "TESTASPNET1234");
-        postData.put("success_url", baseUrl + "test-payment-success");
+        postData.put("success_url", baseUrl + "pay-success");
         postData.put("fail_url", "https://sandbox.sslcommerz.com/developer/fail.php");
         postData.put("cancel_url", "https://sandbox.sslcommerz.com/developer/cancel.php");
         postData.put("version", "3.00");
@@ -60,6 +60,37 @@ public class ParameterBuilder {
         postData.put("value_b", "ref00");
         postData.put("value_c", "ref00");
         postData.put("value_d", "ref00");
+        return postData;
+    }
+
+    public static Map<String, String> constructRequestParam(String baseUrl, String payment, String transactionID, String appointTime, String patientID, String doctorID) {
+        // CREATING LIST OF POST DATA
+        //baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
+        Map<String, String> postData = new HashMap<String, String>();
+        postData.put("total_amount", payment);
+        postData.put("tran_id", transactionID);
+        postData.put("success_url", baseUrl + "pay-success");
+        postData.put("fail_url", "https://sandbox.sslcommerz.com/developer/fail.php");
+        postData.put("cancel_url", "https://sandbox.sslcommerz.com/developer/cancel.php");
+        postData.put("version", "3.00");
+        postData.put("cus_name", "Patient-ID: "+patientID);
+        postData.put("cus_email", "xyz@mail.com");
+        postData.put("cus_add1", "Dhaka");
+        postData.put("cus_city", "Khilkhet");
+        postData.put("cus_state", "Dhaka");
+        postData.put("cus_postcode", "1212");
+        postData.put("cus_country", "Bangladesh");
+        postData.put("cus_phone", "0111111111");
+        postData.put("cus_fax", "0171111111");
+        postData.put("ship_name", "Doctor-ID: "+doctorID);
+        postData.put("ship_add1", "Address Line On");
+        postData.put("ship_add2", "Address Line Tw");
+        postData.put("ship_city", "City Nam");
+        postData.put("ship_state", "State Nam");
+        postData.put("ship_postcode", "Post Cod");
+        postData.put("ship_country", "Country");
+        postData.put("check_in_time", appointTime);
+
         return postData;
     }
 }
