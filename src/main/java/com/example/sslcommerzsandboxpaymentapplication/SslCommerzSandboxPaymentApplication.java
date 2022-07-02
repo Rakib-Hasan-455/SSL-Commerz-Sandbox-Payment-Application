@@ -24,13 +24,13 @@ public class SslCommerzSandboxPaymentApplication {
     }
 
 
-    @GetMapping("/")
+    @PostMapping("/")
     public String indexPay(@ModelAttribute Appointment appointment, Model model) {
         model.addAttribute("Appointment", appointment);
         return "Patient_appoint_doctor";
     }
 
-    @PostMapping("/handle-payment")
+    @GetMapping("/handle-payment")
     public RedirectView payTest(@ModelAttribute Appointment appointment) throws Exception {
         String baseurl = "https://sslpay.herokuapp.com/";
         String payment = appointment.getAppointTime();
