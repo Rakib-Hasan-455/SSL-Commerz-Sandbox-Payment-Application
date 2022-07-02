@@ -60,15 +60,16 @@ public class ParameterBuilder {
         postData.put("value_b", "ref00");
         postData.put("value_c", "ref00");
         postData.put("value_d", "ref00");
+        postData.put("ipn_url", "https://sslpay.herokuapp.com/pay-success-new");
         return postData;
     }
 
-    public static Map<String, String> constructRequestParam(String baseUrl, String payment, String transactionID, String appointTime, String patientID, String doctorID) {
+    public static Map<String, String> constructRequestParam(String baseUrl, String payment, String transactionID, String patientID, String doctorID) {
         // CREATING LIST OF POST DATA
         //baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
         Map<String, String> postData = new HashMap<String, String>();
         postData.put("total_amount", payment);
-        postData.put("tran_id", transactionID);
+        postData.put("tran_id", "transactionID");
         postData.put("success_url", baseUrl + "pay-success");
         postData.put("fail_url", "https://sandbox.sslcommerz.com/developer/fail.php");
         postData.put("cancel_url", "https://sandbox.sslcommerz.com/developer/cancel.php");
@@ -89,7 +90,7 @@ public class ParameterBuilder {
         postData.put("ship_state", "State Nam");
         postData.put("ship_postcode", "Post Cod");
         postData.put("ship_country", "Country");
-        postData.put("check_in_time", appointTime);
+
 
         return postData;
     }

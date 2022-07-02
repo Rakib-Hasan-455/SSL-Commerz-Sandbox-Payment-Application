@@ -31,7 +31,8 @@ public class HomeController {
         String time = appointment.getAppointTime();
         String patientID = appointment.getPatient_ID();
         String doctorID = appointment.getDoctor_ID();
-//        Map<String, String> transactionMap = ParameterBuilder.constructRequestParam(baseurl, payment, transactionID, time, patientID, doctorID);
+        System.out.println(payment+" "+" "+time+" "+doctorID+" "+patientID);
+//        Map<String, String> transactionMap = ParameterBuilder.constructRequestParam(baseurl, payment, time, patientID, doctorID);
         Map<String, String> transactionMap = ParameterBuilder.constructRequestParameters();
 
         SSLCommerz sslCommerz = new SSLCommerz("docto62c031c5a653e", "docto62c031c5a653e@ssl", true);
@@ -54,4 +55,13 @@ public class HomeController {
         System.out.println("This is successful page.. ");
         return "abc";
     }
+
+    @PostMapping("/pay-success-new")
+    public String paymentSuccessNew(HttpServletRequest request, @RequestBody Map<String, String> requestMap) throws Exception {
+        TransactionResponseValidator transactionResponseValidator = new TransactionResponseValidator();
+        transactionResponseValidator.receiveSuccessResponse(requestMap);
+        System.out.println("Pay-success-new is called");
+        return "Everything is okay! ";
+    }
 }
+
