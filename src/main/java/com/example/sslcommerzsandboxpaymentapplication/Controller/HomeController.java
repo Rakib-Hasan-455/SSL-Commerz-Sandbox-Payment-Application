@@ -1,26 +1,22 @@
-package com.example.sslcommerzsandboxpaymentapplication;
+package com.example.sslcommerzsandboxpaymentapplication.Controller;
 
 import com.example.sslcommerzsandboxpaymentapplication.commerz.SSLCommerz;
 import com.example.sslcommerzsandboxpaymentapplication.commerz.Utility.ParameterBuilder;
 import com.example.sslcommerzsandboxpaymentapplication.entity.Appointment;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
-@SpringBootApplication
-public class SslCommerzSandboxPaymentApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(SslCommerzSandboxPaymentApplication.class, args);
-    }
-
+@ComponentScan
+public class HomeController {
 
     @GetMapping("/")
     public String indexPay(@ModelAttribute Appointment appointment, Model model) {
@@ -54,6 +50,4 @@ public class SslCommerzSandboxPaymentApplication {
         System.out.println("This is successful page.. ");
         return "Payment_Success";
     }
-
-
 }
