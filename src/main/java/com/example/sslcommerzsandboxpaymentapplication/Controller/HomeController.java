@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-@RestController
+@Controller
 @ComponentScan
 public class HomeController {
 
