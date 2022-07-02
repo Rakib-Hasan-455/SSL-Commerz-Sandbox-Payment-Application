@@ -1,6 +1,7 @@
 package com.example.sslcommerzsandboxpaymentapplication.Controller;
 
 import com.example.sslcommerzsandboxpaymentapplication.commerz.SSLCommerz;
+import com.example.sslcommerzsandboxpaymentapplication.commerz.TransactionResponseValidator;
 import com.example.sslcommerzsandboxpaymentapplication.commerz.Utility.ParameterBuilder;
 import com.example.sslcommerzsandboxpaymentapplication.entity.Appointment;
 import org.springframework.context.annotation.ComponentScan;
@@ -44,8 +45,9 @@ public class HomeController {
 
 
     @PostMapping("/pay-success")
-    public String paymentSuccessful(Model model, HttpServletRequest httpServletRequest) {
-        String customerID = httpServletRequest.getAttribute("cus_name").toString();
+    public String paymentSuccessful(Model model, HttpServletRequest request) {
+
+        String customerID = request.getAttribute("cus_name").toString();
         model.addAttribute("customerID", customerID);
         System.out.println("This is successful page.. ");
         return "Payment_Success";
