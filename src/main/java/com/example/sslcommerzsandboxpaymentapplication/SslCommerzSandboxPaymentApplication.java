@@ -7,9 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,13 +22,13 @@ public class SslCommerzSandboxPaymentApplication {
     }
 
 
-    @PostMapping("/")
+    @GetMapping("/")
     public String indexPay(@ModelAttribute Appointment appointment, Model model) {
         model.addAttribute("Appointment", appointment);
         return "Patient_appoint_doctor";
     }
 
-    @GetMapping("/handle-payment")
+    @RequestMapping(value = "/handle-payment", method = RequestMethod.POST)
     public RedirectView payTest(@ModelAttribute Appointment appointment) throws Exception {
         String baseurl = "https://sslpay.herokuapp.com/";
         String payment = appointment.getAppointTime();
