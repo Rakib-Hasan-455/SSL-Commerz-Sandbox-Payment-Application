@@ -32,7 +32,9 @@ public class HomeController {
         String time = appointment.getAppointTime();
         String patientID = appointment.getPatient_ID();
         String doctorID = appointment.getDoctor_ID();
-        Map<String, String> transactionMap = ParameterBuilder.constructRequestParam(baseurl, payment, transactionID, time, patientID, doctorID);
+//        Map<String, String> transactionMap = ParameterBuilder.constructRequestParam(baseurl, payment, transactionID, time, patientID, doctorID);
+        Map<String, String> transactionMap = ParameterBuilder.constructRequestParameters();
+
         SSLCommerz sslCommerz = new SSLCommerz("docto62c031c5a653e", "docto62c031c5a653e@ssl", true);
         String url = sslCommerz.initiateTransaction(transactionMap, false);
         System.out.println("The url: " + url);
