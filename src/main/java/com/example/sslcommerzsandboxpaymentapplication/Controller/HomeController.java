@@ -6,10 +6,7 @@ import com.example.sslcommerzsandboxpaymentapplication.entity.Appointment;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,7 +44,9 @@ public class HomeController {
 
 
     @PostMapping("/pay-success")
-    public String paymentSuccessful() {
+    public String paymentSuccessful(Model model, HttpServletRequest httpServletRequest) {
+        String customerID = httpServletRequest.getAttribute("cus_name").toString();
+        model.addAttribute("customerID", customerID)
         System.out.println("This is successful page.. ");
         return "Payment_Success";
     }
