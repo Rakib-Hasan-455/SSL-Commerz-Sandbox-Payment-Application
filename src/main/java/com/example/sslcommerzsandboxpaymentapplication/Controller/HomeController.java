@@ -49,16 +49,26 @@ public class HomeController {
 
     @RequestMapping("/pay-success")
     @ResponseBody
-    public String paymentSuccessful(@RequestParam Map<String, String> requestMap, Model model) {
+    public String paymentSuccessful(@RequestParam Map<String, String> requestMap, @RequestParam Map<String, String> postData, Model model) {
+
         System.out.println(requestMap.get("cus_name"));
         String requestMapStr = "";
+        String postDataStr = "";
         for (String key: requestMap.keySet()) {
             System.out.println("key = " + key + " value = " + requestMap.get(key));
             String str = key =  key + " value = " + requestMap.get(key) + " \n";
             requestMapStr = requestMapStr + str;
+            requestMapStr = requestMapStr + '\n';
+        }
+
+        for (String key: postData.keySet()) {
+            String str = key =  key + " value = " + requestMap.get(key) + " \n";
+            postDataStr = postDataStr + str;
+            postDataStr = postDataStr + '\n';
         }
         System.out.println("This is successful page.. "+ requestMapStr);
-        return "The map came into comtroller is -> " + requestMapStr + " -------------- " + requestMap.get("cus_name");
+        return "The map came into comtroller is -> " + requestMapStr + " -------------- " +
+                postDataStr;
     }
 
 
