@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
+import java.util.Random;
 
 @Controller
 @ComponentScan
@@ -27,14 +28,14 @@ public class HomeController {
     @PostMapping(value = "/handle-payment")
     public RedirectView payTest(@ModelAttribute Appointment appointment) throws Exception {
         String baseurl = "https://sslpay.herokuapp.com/";
-        String payment = appointment.getAppointTime();
-        String transactionID = "SKJSDKFE123";
+        String payment = appointment.getPaid();
+        String transactionID = "TXID"+Math.random()*10000;
         String time = appointment.getAppointTime();
         String patientID = appointment.getPatient_ID();
         String doctorID = appointment.getDoctor_ID();
         System.out.println(payment+" "+" "+time+" "+doctorID+" "+patientID);
-//        Map<String, String> transactionMap = ParameterBuilder.constructRequestParam(baseurl, payment, time, patientID, doctorID);
-        Map<String, String> transactionMap = ParameterBuilder.constructRequestParameters();
+        Map<String, String> transactionMap = ParameterBuilder.constructRequestParam(baseurl, payment, transactionID, patientID, doctorID);
+//        Map<String, String> transactionMap = ParameterBuilder.constructRequestParameters();
 
         SSLCommerz sslCommerz = new SSLCommerz("docto62c031c5a653e", "docto62c031c5a653e@ssl", true);
         String url = sslCommerz.initiateTransaction(transactionMap, false);

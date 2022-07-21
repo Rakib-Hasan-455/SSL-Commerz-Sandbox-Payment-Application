@@ -69,7 +69,7 @@ public class ParameterBuilder {
         //baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
         Map<String, String> postData = new HashMap<String, String>();
         postData.put("total_amount", payment);
-        postData.put("tran_id", "transactionID");
+        postData.put("tran_id", transactionID);
         postData.put("success_url", baseUrl + "pay-success");
         postData.put("fail_url", "https://sandbox.sslcommerz.com/developer/fail.php");
         postData.put("cancel_url", "https://sandbox.sslcommerz.com/developer/cancel.php");
