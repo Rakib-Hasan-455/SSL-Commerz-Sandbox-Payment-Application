@@ -62,7 +62,7 @@ public class HomeController {
         }
 
         for (String key: postData.keySet()) {
-            String str = key =  key + " value = " + requestMap.get(key) + " \n";
+            String str =  key + " value = " + postData.get(key) + " \n";
             postDataStr = postDataStr + str;
             postDataStr = postDataStr + '\n';
         }
