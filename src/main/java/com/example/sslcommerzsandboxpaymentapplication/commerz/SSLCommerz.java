@@ -87,7 +87,6 @@ public class SSLCommerz {
      * @throws Exception
      */
     public String initiateTransaction(Map<String, String> postData, boolean isGetGatewayList) throws Exception {
-
         postData.put("store_id", this.storeId);
         postData.put("store_passwd", this.storePass);
         String response = this.sendPost(postData);
